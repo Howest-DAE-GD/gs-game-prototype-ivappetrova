@@ -197,7 +197,8 @@ void Game::Draw() const
 bool Game::IsIntersecting(const Rectf& r1, const Rectf& r2) const
 {
 	if ((int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0)
-		|| (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0))
+		|| (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0)
+		|| (int(r1.left - 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0))
 	{
 		return true;
 	}

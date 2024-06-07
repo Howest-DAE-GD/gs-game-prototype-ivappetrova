@@ -132,63 +132,73 @@ void Game::Draw() const
 		if (IsIntersecting(kluch, katinar) == true)
 		{
 		std::cout << "YOU WIN" << std::endl;
-		utils::SetColor(Color4f(1.f, 1.f, 1.f, 1.f));
+		utils::SetColor(Color4f(1.f, 1.f, 1.f, 1.f));  //WIN- WHITE
 		utils::FillRect(0.f, 0.f, 800.f, 500.f);
 		}
 
 
 		if (m_Start == false)
 		{
-		utils::SetColor(Color4f(1.f, 1.f, 0.f, 1.f));
+		utils::SetColor(Color4f(1.f, 1.f, 0.f, 1.f)); // Yellow
 		utils::FillRect(0.f, 0.f, 800.f, 500.f);
 		}
 		else
 		{
 		}
 
-	utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
-	utils::DrawRect(katinar);
-	utils::SetColor(Color4f{ 1.f,0.f,1.f,1.f });
-	utils::DrawEllipse(Point2f{ katinar.left,katinar.bottom }, 5.f, 5.f);
+		// KATINAR
+		utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
+		utils::DrawRect(katinar);
 
-	glPushMatrix();
-	{
+		utils::SetColor(Color4f{ 1.f,0.f,1.f,1.f });
+		utils::DrawEllipse(Point2f{ katinar.left,katinar.bottom }, 5.f, 5.f);
 
-		/*glTranslatef(kluch.left, kluch.bottom, 0);
-		glRotatef(angle, 0.f, 0.f, 1.f);
-		glTranslatef(-kluch.left, -kluch.bottom, 0);*/
+	   //KLUCH
 		utils::SetColor(Color4f{ 0.f, 1.f, 0.f, 0.5f });
 		utils::FillRect(kluch);
 
-		/*std::cout << "Angle:" << angle << std::endl;*/
 
 		utils::SetColor(Color4f{ 1.f,0.f,1.f,1.f });
 		utils::DrawEllipse(Point2f{ kluch.left,kluch.bottom }, 5.f, 5.f);
-	}
 
-	glPopMatrix();
 
-	if (m_pTimer->TimeOut(elapsedTime) && !IsIntersecting(kluch, katinar))
-	{
-		std::cout << "TIME FINISHED. YOU LOSE! MUHAHAHAHA" << std::endl;
-		utils::SetColor(Color4f(1.f, 0.f, 0.f, 1.f));
-		utils::FillRect(0.f, 0.f, 800.f, 500.f);
-	}
+		if (m_pTimer->TimeOut(elapsedTime) && !IsIntersecting(kluch, katinar)) // LOSE- RED
+		{
+			std::cout << "TIME FINISHED. YOU LOSE! MUHAHAHAHA" << std::endl;
+			utils::SetColor(Color4f(1.f, 0.f, 0.f, 1.f));
+			utils::FillRect(0.f, 0.f, 800.f, 500.f);
+		}
 }
-
 
 bool Game::IsIntersecting(const Rectf& r1, const Rectf& r2) const
 {
-	if (	(int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )/*&& (int(angle) % 360) == 0)*/
-		||  (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )/*&& (int(angle) % 360) == 0)*/ )
+	if ((int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom))
+		|| (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom))
+		|| (int(r1.left - 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom)))
 	{
 		return true;
 	}
-	
+
 
 	//
 	return false;
 }
+
+//bool Game::IsIntersecting(const Rectf& r1, const Rectf& r2) const
+//{
+//	if (	(int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )
+//		||  (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )
+//		||  (int(r1.left - 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom))
+//		||  (int(r1.left) == int(r2.left) && int(r1.bottom+1) == int(r2.bottom))
+//		||  (int(r1.left) == int(r2.left) && int(r1.bottom-1) == int(r2.bottom)))
+//	{
+//		return true;
+//	}
+//	
+//
+//	//
+//	return false;
+//}
 
 void Game::ProcessKeyDownEvent(const SDL_KeyboardEvent& e)
 {

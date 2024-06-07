@@ -216,7 +216,9 @@ void Game::Draw() const
 bool Game::IsIntersecting(std::vector<Point2f> vector1, const std::vector<Point2f>& constVECTOR) const
 {
 	if ((int(vector1[0].x + 1) == int(constVECTOR[0].x) && (int(vector1[0].y) == int(constVECTOR[0].y)) && (int(angle) % 360) == 215)
-		|| (int(vector1[0].x) == int(constVECTOR[0].x) && (int(vector1[0].y) == int(constVECTOR[0].y)) && (int(angle) % 360) == 215))
+		|| (int(vector1[0].x) == int(constVECTOR[0].x) && (int(vector1[0].y) == int(constVECTOR[0].y)) && (int(angle) % 360) == 215)
+		|| (int(vector1[0].x-1 ) == int(constVECTOR[0].x) && (int(vector1[0].y) == int(constVECTOR[0].y)) && (int(angle) % 360) == 215))
+
 	{
 		return true;
 
