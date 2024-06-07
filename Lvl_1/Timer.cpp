@@ -4,7 +4,7 @@
 #include <ctime>
 
 Timer::Timer() :
-	m_SecondsInTotal{ 22.f },
+	m_SecondsInTotal{ 17.f },
 	m_TotalTimeElapsed{}
 {
 

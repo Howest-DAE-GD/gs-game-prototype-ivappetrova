@@ -13,20 +13,13 @@ Game::Game(const Window& window)
 
 	if (m_Start == false)
 	{
-		std::cout << "You are an archaeologist" << std::endl;
-		std::cout << " " << std::endl;
-		std::cout << "Your dream has always been to go on a expedition in Egypt." << std::endl;
-		std::cout << "Lucky you! You were chosen from your boss and your dream is about to become true." << std::endl;
-		std::cout << "Unfortuantely, you were trapped in the pyramid that you were investigating." << std::endl;
-		std::cout << "The first known locks in history were created over 6000 years ago in Ancient Egypt and Mesopotamia and you know that. ";
-		std::cout << " " << std::endl;
-		std::cout << "Can you break the locks in the pyramid on time and escape?" << std::endl;
+		std::cout << "Here you are! The last floor!" << std::endl;
 		std::cout << " " << std::endl;
 		std::cout << "Controls: " << std::endl;
 		std::cout << "- Move   : Arrows " << std::endl;
-		std::cout << "- Rotate : R" << std::endl;
+		std::cout << "- Rotation : R" << std::endl;
 		std::cout << " " << std::endl;
-		std::cout << "You have 15 seconds to fit the key (green) in the lock (red). Are you gonna make it out? ;)" << std::endl;
+		std::cout << "You have 10 seconds to fit the key (green) in the lock (red). Are you gonna make it out? ;)" << std::endl;
 		std::cout << " " << std::endl;
 		std::cout << "Click S to start the game" << std::endl;
 	}
@@ -139,7 +132,7 @@ void Game::Draw() const
 
 	if (IsIntersecting(kluch, katinar) == true)
 	{
-		std::cout << "YOU WIN" << std::endl;
+		std::cout << "YOU HAVE ESCAPED THE PYRAMID! Congrats ;)" << std::endl;
 		utils::SetColor(Color4f(1.f, 1.f, 1.f, 1.f));
 		utils::FillRect(0.f, 0.f, 800.f, 500.f);
 	}
@@ -169,6 +162,8 @@ void Game::Draw() const
 		glTranslatef(-katinar[7].x, -katinar[7].y, 0);
 		utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.0f });
 		utils::DrawPolygon(katinar);
+		utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
+		utils::DrawEllipse(katinar[1], 5.0f, 5.0f);
 
 	}
 	glPopMatrix();
@@ -190,10 +185,12 @@ void Game::Draw() const
 		utils::SetColor(Color4f{ 0.f, 1.f, 0.f, 1.0f });
 		utils::DrawPolygon(kluch);
 
+		utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
+		utils::DrawEllipse(kluch[1], 5.0f, 5.0f);
+
 		if (IsIntersecting(kluch, katinar) == true)
 		{
 			utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
-			utils::DrawEllipse(kluch[1], 5.0f, 5.0f);
 			utils::DrawEllipse(kluch[2], 5.0f, 5.0f);
 			utils::DrawEllipse(kluch[3], 5.0f, 5.0f);
 			utils::DrawEllipse(kluch[4], 5.0f, 5.0f);

@@ -24,9 +24,11 @@ Game::Game( const Window& window )
 			std::cout << " " << std::endl;
 			std::cout << "Controls: " << std::endl;
 			std::cout << "- Move   : Arrows " << std::endl;
-			std::cout << "- Rotate : R" << std::endl;
+			//std::cout << "- Rotate : R" << std::endl;
 			std::cout << " " << std::endl;
-			std::cout << "You have 20 seconds to fit the key (green) in the lock (red). Are you gonna make it out? ;)" << std::endl;
+			std::cout << "You have 15 seconds to fit the key (green) in the lock (red). Are you gonna make it out? ;)" << std::endl;
+			std::cout << " " << std::endl;
+			std::cout << "HINT: the circles also have to fit!!! " << std::endl;
 			std::cout << " " << std::endl;
 			std::cout << "Click S to start the game" << std::endl;
 	}
@@ -86,34 +88,34 @@ void Game::Update(float elapsedSec)
 				// MOVEMENT
 				if (pStates[SDL_SCANCODE_RIGHT])
 				{
-					kluch.left += moveDistance;
+					int(kluch.left += moveDistance);
 					/*std::cout << "Left KLUCH: " << int(kluch.left) << std::endl;*/
 				}
 				if (pStates[SDL_SCANCODE_LEFT])
 				{
-					kluch.left -= moveDistance;
+					int(kluch.left -= moveDistance);
 					/*std::cout << "Left KLUCH: " << int(kluch.left) << std::endl;*/
 				}
 				if (pStates[SDL_SCANCODE_UP])
 				{
-					kluch.bottom += moveDistance;
+					int(kluch.bottom += moveDistance);
 					/*std::cout << "Bottom KLUCH: " << int(kluch.bottom) << std::endl;*/
 				}
 				if (pStates[SDL_SCANCODE_DOWN])
 				{
-					kluch.bottom -= moveDistance;
+					int(kluch.bottom -= moveDistance);
 					/*std::cout << "Bottom KLUCH: " << int(kluch.bottom) << std::endl;*/
 				}
 
-				// Rotation
-				if (pStates[SDL_SCANCODE_R]) 
-				{
-					if (!rKeyPressed) 
-					{
-						angle +=10;
-						rKeyPressed = true;  
-					}
-				}
+				//// Rotation
+				//if (pStates[SDL_SCANCODE_R]) 
+				//{
+				//	if (!rKeyPressed) 
+				//	{
+				//		angle +=10;
+				//		rKeyPressed = true;  
+				//	}
+				//}
 				else {
 					rKeyPressed = false; 
 				}
@@ -146,13 +148,15 @@ void Game::Draw() const
 
 	utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.f });
 	utils::DrawRect(katinar);
+	utils::SetColor(Color4f{ 1.f,0.f,1.f,1.f });
+	utils::DrawEllipse(Point2f{ katinar.left,katinar.bottom }, 5.f, 5.f);
 
 	glPushMatrix();
 	{
 
-		glTranslatef(kluch.left, kluch.bottom, 0);
+		/*glTranslatef(kluch.left, kluch.bottom, 0);
 		glRotatef(angle, 0.f, 0.f, 1.f);
-		glTranslatef(-kluch.left, -kluch.bottom, 0);
+		glTranslatef(-kluch.left, -kluch.bottom, 0);*/
 		utils::SetColor(Color4f{ 0.f, 1.f, 0.f, 0.5f });
 		utils::FillRect(kluch);
 
@@ -175,8 +179,8 @@ void Game::Draw() const
 
 bool Game::IsIntersecting(const Rectf& r1, const Rectf& r2) const
 {
-	if (	(int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0)
-		||  (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) && (int(angle) % 360) == 0) )
+	if (	(int(r1.left) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )/*&& (int(angle) % 360) == 0)*/
+		||  (int(r1.left + 1) == int(r2.left) && int(r1.bottom) == int(r2.bottom) )/*&& (int(angle) % 360) == 0)*/ )
 	{
 		return true;
 	}

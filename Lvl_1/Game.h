@@ -39,7 +39,7 @@ private:
 	Rectf katinar{ int(200.f), int(200.f), int(200.f), int(200.f) };
 	Rectf kluch{ int(400.f), int(100.f), int(200.f), int(200.f) };
 
-	float angle{ 20.f };
+	//float angle{ 20.f };
 	float elapsedTime = 30.0f; // total time in seconds
 	bool m_timeFinished= false;
 

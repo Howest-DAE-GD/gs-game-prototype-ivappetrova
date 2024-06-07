@@ -13,20 +13,19 @@ Game::Game(const Window& window)
 
 	if (m_Start == false)
 	{
-		std::cout << "You are an archaeologist" << std::endl;
+		std::cout << "Congratulations! You have made it to the second floor!" << std::endl;
 		std::cout << " " << std::endl;
-		std::cout << "Your dream has always been to go on a expedition in Egypt." << std::endl;
-		std::cout << "Lucky you! You were chosen from your boss and your dream is about to become true." << std::endl;
-		std::cout << "Unfortuantely, you were trapped in the pyramid that you were investigating." << std::endl;
-		std::cout << "The first known locks in history were created over 6000 years ago in Ancient Egypt and Mesopotamia and you know that. ";
-		std::cout << " " << std::endl;
-		std::cout << "Can you break the locks in the pyramid on time and escape?" << std::endl;
+		std::cout << "However, there are still many locks left" << std::endl;
 		std::cout << " " << std::endl;
 		std::cout << "Controls: " << std::endl;
 		std::cout << "- Move   : Arrows " << std::endl;
-		std::cout << "- Rotate : R" << std::endl;
+		std::cout << " " << std::endl;
+		std::cout << " NEW MECHANIC:" << std::endl;
+		std::cout << "- Rotatation : R" << std::endl;
 		std::cout << " " << std::endl;
 		std::cout << "You have 15 seconds to fit the key (green) in the lock (red). Are you gonna make it out? ;)" << std::endl;
+		std::cout << " " << std::endl;
+		std::cout << "HINT: the circles also have to fit!!! " << std::endl;
 		std::cout << " " << std::endl;
 		std::cout << "Click S to start the game" << std::endl;
 	}
@@ -154,6 +153,9 @@ void Game::Draw() const
 		glTranslatef(-katinar.left, -katinar.bottom, 0);
 		utils::SetColor(Color4f{ 1.f, 0.f, 0.f, 1.0f });
 		utils::DrawRect(katinar);
+
+		utils::SetColor(Color4f{ 1.f,0.f,1.f,1.f });
+		utils::DrawEllipse(Point2f{ katinar.left,katinar.bottom }, 5.f, 5.f);
 
 	}
 
