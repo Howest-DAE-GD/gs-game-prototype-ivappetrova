@@ -683,4 +683,5 @@ bool utils::IntersectRectLine(const Rectf& r, const Point2f& p1, const Point2f& 
 	return true;
 }
 
+
 #pragma endregion CollisionFunctionality

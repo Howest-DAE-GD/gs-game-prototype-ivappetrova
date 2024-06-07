@@ -1,5 +1,9 @@
 #pragma once
 #include "BaseGame.h"
+#include "utils.h"
+#include "Timer.h"
+#include "Texture.h"
+
 class Game : public BaseGame
 {
 public:
@@ -11,7 +15,7 @@ public:
 	// http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rh-override
 	~Game();
 
-	void Update( float elapsedSec ) override;
+	void Update( float elapsedSec);
 	void Draw( ) const override;
 
 	// Event handling
@@ -21,10 +25,29 @@ public:
 	void ProcessMouseDownEvent( const SDL_MouseButtonEvent& e ) override;
 	void ProcessMouseUpEvent( const SDL_MouseButtonEvent& e ) override;
 
+	// MOITE FUNKCII
+	
+
 private:
 
 	// FUNCTIONS
 	void Initialize();
 	void Cleanup( );
 	void ClearBackground( ) const;
+
+	//my stuff
+	Rectf katinar{ int(200.f), int(200.f), int(200.f), int(200.f) };
+	Rectf kluch{ int(400.f), int(100.f), int(200.f), int(200.f) };
+
+	float angle{ 20.f };
+	float elapsedTime = 30.0f; // total time in seconds
+	bool m_timeFinished= false;
+
+	Timer* m_pTimer;
+
+	bool m_Start = false;
+	bool IsIntersecting(const Rectf& r1, const Rectf& r2) const;
+
+
+
 };
