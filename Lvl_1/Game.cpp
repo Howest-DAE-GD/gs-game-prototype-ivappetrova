@@ -10,7 +10,7 @@ Game::Game( const Window& window )
 	:BaseGame{ window }, m_pTimer{}
 {
 	Initialize();
-
+	//hi
 	if (m_Start == false)
 	{
 			std::cout << "You are an archaeologist" << std::endl;
